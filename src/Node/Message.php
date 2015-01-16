@@ -16,6 +16,13 @@ class Message extends BaseNode
         $this->escapeSequences = array_merge($this->escapeSequences, $escapeSequences);
     }
     
+    public function getSegmentsByName($segmentName) {
+        return array_filter($this->children, function($segment) use ($segmentName) {
+           if($segment->getSegmentName() === $segmentName)
+               return true; 
+        });
+    }
+    
     public function getValueAtIndex($segmentIndex = 0, $fieldIndex = 0, $repetitionIndex = 0, $componentIndex = 0, $subComponentIndex = 0) {
         if(!array_key_exists($segmentIndex, $this->children)) {
             throw new \DomainException('No segment at index "'.$segmentIndex.'"');

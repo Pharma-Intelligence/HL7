@@ -12,6 +12,12 @@ $map = array(
     'MSH' => '\PharmaIntelligence\HL7\Node\Segment\MSHSegment'
 );
 $message = $unserializer->loadMessageFromString($testHl7, $map);
-echo $message->getValueAtIndex(4, 3, 0, 1).PHP_EOL;
+foreach($message->getSegmentsByName('MSH') as $msh) {
+    echo $msh->getSendingApplication().PHP_EOL;
+    echo $msh->getDateTimeOfMessage()->format('d-m-Y H:i:s').PHP_EOL;
+    echo $msh->getMessageType().PHP_EOL;
+}
+
+return;
 $message->setEscapeSequences(array('cursor_return' => PHP_EOL));
 echo $message;

@@ -7,6 +7,10 @@ abstract class BaseNode implements \ArrayAccess, \Iterator
     
     protected $parent = null;
 
+    /**
+     * 
+     * @return \PharmaIntelligence\HL7\Node\Message
+     */
     public function getRootNode() {
         if(is_null($this->parent))
             return $this;

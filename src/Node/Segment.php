@@ -15,6 +15,10 @@ class Segment extends BaseNode
         $this->segmentName = $segmentName;
     }
     
+    public function getSegmentName() {
+        return $this->segmentName;
+    }
+    
     public function __toString() {
         $children = array_merge(array($this->segmentName), $this->children);
         return implode($this->getRootNode()->escapeSequences['field_delimiter'], $children);
