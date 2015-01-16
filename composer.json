@@ -1,0 +1,23 @@
+{
+    "name": "pharmaintelligence/hl7",
+    "type": "library",
+    "description": "HL7 PHP Library.",
+    "keywords": ["hl7"],
+    "homepage": "https://github.com/linde002/HL7/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robert van der Linde",
+            "homepage": "http://pharma-intelligence.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "classmap": [
+            "./src/"
+        ]
+    }
+}
