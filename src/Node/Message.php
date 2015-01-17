@@ -24,7 +24,7 @@ class Message extends BaseNode
     }
     
     public function getMessageHeaderSegment() {
-        return array_pop($this->getSegmentsByName('MSH'));
+        return $this->children[0];
     }
     
     public function getValueAtIndex($segmentIndex = 0, $fieldIndex = 0, $repetitionIndex = 0, $componentIndex = 0, $subComponentIndex = 0) {
