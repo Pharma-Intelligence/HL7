@@ -3,7 +3,7 @@
     "type": "library",
     "description": "HL7 PHP Library.",
     "keywords": ["hl7"],
-    "homepage": "https://github.com/linde002/HL7/",
+    "homepage": "https://github.com/pharma-intelligence/HL7/",
     "license": "MIT",
     "authors": [
         {
