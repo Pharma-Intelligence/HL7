@@ -9,7 +9,7 @@ class Message extends BaseNode
         'component_delimiter' => '^',
         'subcomponent_delimiter' => '&',
         'escape_delimiter' => '\\',
-        'cursor_return' => '\n'
+        'cursor_return' => '\r'
     );
     
     public function setEscapeSequences(array $escapeSequences) {
@@ -17,10 +17,12 @@ class Message extends BaseNode
     }
     
     public function getSegmentsByName($segmentName) {
-        return array_filter($this->children, function($segment) use ($segmentName) {
+        $filtered = array_filter($this->children, function($segment) use ($segmentName) {
            if($segment->getSegmentName() === $segmentName)
                return true; 
+           return false;
         });
+        return array_values($filtered);
     }
     
     public function getMessageHeaderSegment() {

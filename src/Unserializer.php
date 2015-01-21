@@ -27,11 +27,10 @@ class Unserializer
         'component_delimiter' => '^',
         'subcomponent_delimiter' => '&',
         'escape_delimiter' => '\\',
-        'cursor_return' => '\n'
+        'cursor_return' => '\r'
     );
     
     public function __construct() {
-
     }
     
     public function loadMessageFromString($hl7String, $segmentClassMap = array()) {
@@ -48,7 +47,7 @@ class Unserializer
     
     
     protected function splitSegments() {
-        $segmentStrings = explode("\n", $this->hl7String);
+        $segmentStrings = explode($this->escapeSequences['cursor_return'], $this->hl7String);
         foreach($segmentStrings as $segmentString) {
             /**
              * Last line

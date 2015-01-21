@@ -1,7 +1,7 @@
 <?php
 namespace PharmaIntelligence\HL7\Node;
 
-abstract class BaseNode implements \ArrayAccess, \Iterator
+abstract class BaseNode implements \ArrayAccess, \Iterator, \Countable
 {
     protected $children = array();
     
@@ -24,6 +24,10 @@ abstract class BaseNode implements \ArrayAccess, \Iterator
     
     public function setParent(BaseNode $node) {
         $this->parent = $node;
+    }
+    
+    public function count() {
+        return count($this->children);
     }
     
     public abstract function __toString(); 
