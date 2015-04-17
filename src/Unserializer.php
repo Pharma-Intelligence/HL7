@@ -89,8 +89,14 @@ class Unserializer
     protected function splitComponents($repetitionString) {
         $componentStrings = explode($this->escapeSequences['component_delimiter'], $repetitionString);
         if(count($componentStrings) === 1) {
-            $repetition = new Repetition($componentStrings[0]);
-            return $repetition;
+            /**
+             * Check for subcomponents in single component
+             */
+            $component = $this->splitSubComponents($componentStrings[0]);
+            if($component->count() === 0) {
+                $repetition = new Repetition($componentStrings[0]);
+                return $repetition;
+            }
         }
         
         $repetition = new Repetition();
