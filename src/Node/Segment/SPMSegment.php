@@ -3,6 +3,12 @@
 use DateTime;
 use PharmaIntelligence\HL7\Node\Segment;
 
+/**
+ * The intent of this segment is to describe the characteristics of a specimen. It differs from the intent of the OBR in
+ * that the OBR addresses order-specific information. It differs from the SAC segment in that the SAC addresses specimen
+ * container attributes. An advantage afforded by a separate specimen segment is that it generalizes the multiple
+ * relationships among order(s), results, specimen(s) and specimen container(s).
+ */
 class SPMSegment extends Segment
 {
     const IDENTIFIER = 'SPM';

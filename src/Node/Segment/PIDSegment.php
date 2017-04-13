@@ -3,6 +3,11 @@
 use DateTime;
 use PharmaIntelligence\HL7\Node\Segment;
 
+/**
+ * The PID segment is used by all applications as the primary means of communicating patient identification information.
+ * This segment contains permanent patient identifying and demographic information that, for the most part, is not
+ * likely to change frequently.
+ */
 class PIDSegment extends Segment
 {
     const IDENTIFIER = 'PID';

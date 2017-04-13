@@ -3,6 +3,9 @@
 use DateTime;
 use PharmaIntelligence\HL7\Node\Segment;
 
+/**
+ * Observation Request segment; Taken from ASTM E1238
+ */
 class OBRSegment extends Segment
 {
     const IDENTIFIER = 'OBR';

@@ -2,6 +2,10 @@
 
 use PharmaIntelligence\HL7\Node\Segment;
 
+/**
+ * The NTE segment is defined here for inclusion in messages defined in other chapters.
+ * It is commonly used for sending notes and comments.
+ */
 class NTESegment extends Segment
 {
     const IDENTIFIER = 'NTE';

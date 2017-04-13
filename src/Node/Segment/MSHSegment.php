@@ -3,6 +3,9 @@
 use DateTime;
 use PharmaIntelligence\HL7\Node\Segment;
 
+/**
+ * The MSH segment defines the intent, source, destination, and some specifics of the syntax of a message.
+ */
 class MSHSegment extends Segment
 {
     const IDENTIFIER = 'MSH';

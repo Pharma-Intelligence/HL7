@@ -3,6 +3,10 @@
 use DateTime;
 use PharmaIntelligence\HL7\Node\Segment;
 
+/**
+ * The OBX segment is used to transmit a single observation or observation fragment.
+ * It represents the smallest indivisible unit of a report.
+ */
 class OBXSegment extends Segment
 {
     const IDENTIFIER = 'OBX';
