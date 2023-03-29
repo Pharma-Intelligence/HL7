@@ -3,9 +3,9 @@ namespace PharmaIntelligence\HL7\Node;
 
 use PharmaIntelligence\HL7\Exception\StructureException;
 
+#[\AllowDynamicProperties]
 class Segment extends BaseNode
 {
-    
     protected $segmentName = '';
     
     public function __construct($segmentName) {
@@ -14,15 +14,15 @@ class Segment extends BaseNode
         }
         $this->segmentName = $segmentName;
     }
-    
+
+    #[\ReturnTypeWillChange]
     public function getSegmentName() {
         return $this->segmentName;
     }
-    
+
+    #[\ReturnTypeWillChange]
     public function __toString() {
         $children = array_merge(array($this->segmentName), $this->children);
         return implode($this->getRootNode()->escapeSequences['field_delimiter'], $children);
     }
 }
-
-?>
