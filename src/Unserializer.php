@@ -9,12 +9,13 @@ use PharmaIntelligence\HL7\Node\Field;
 use PharmaIntelligence\HL7\Node\Repetition;
 use PharmaIntelligence\HL7\Node\Component;
 use PharmaIntelligence\HL7\Node\SubComponent;
+
+#[\AllowDynamicProperties]
 class Unserializer
 {
     protected $hl7String = '';
     
     /**
-     * 
      * @var Message
      */
     protected $message = null;
@@ -32,7 +33,8 @@ class Unserializer
     
     public function __construct() {
     }
-    
+
+    #[\ReturnTypeWillChange]
     public function loadMessageFromString($hl7String, $segmentClassMap = array()) {
         $this->hl7String = $hl7String;
         $this->segmentClassMap = $segmentClassMap;
@@ -44,8 +46,8 @@ class Unserializer
         $this->splitSegments();
         return $this->message;
     }
-    
-    
+
+    #[\ReturnTypeWillChange]
     protected function splitSegments() {
         $segmentStrings = explode($this->escapeSequences['cursor_return'], $this->hl7String);
         foreach($segmentStrings as $segmentString) {
@@ -59,7 +61,8 @@ class Unserializer
             $this->message->append($segment);
         }
     }
-    
+
+    #[\ReturnTypeWillChange]
     protected function splitFields($segmentString) {
         $segmentName = substr($segmentString, 0, 3);
         if(!array_key_exists($segmentName, $this->segmentClassMap)) {
@@ -75,7 +78,8 @@ class Unserializer
         }
         return $segment; 
     }
-    
+
+    #[\ReturnTypeWillChange]
     protected function splitRepetitions($fieldString) {
         $field = new Field();
         $repetitionStrings = explode($this->escapeSequences['repeat_delimiter'], $fieldString);
@@ -85,7 +89,8 @@ class Unserializer
         }
         return $field;
     }
-    
+
+    #[\ReturnTypeWillChange]
     protected function splitComponents($repetitionString) {
         $componentStrings = explode($this->escapeSequences['component_delimiter'], $repetitionString);
         if(count($componentStrings) === 1) {
@@ -106,7 +111,8 @@ class Unserializer
         }
         return $repetition;
     }
-    
+
+    #[\ReturnTypeWillChange]
     protected function splitSubComponents($componentString) {
         $subcomponentStrings = explode($this->escapeSequences['subcomponent_delimiter'], $componentString);
         if(count($subcomponentStrings) === 1) {
@@ -120,7 +126,8 @@ class Unserializer
         }
         return $component;
     }
-    
+
+    #[\ReturnTypeWillChange]
     protected function validate() {
         if(strlen($this->hl7String) == 0)
             throw new StructureException('HL7 string is empty');
@@ -133,7 +140,8 @@ class Unserializer
             throw new StructureException('HL7 starts with "'.$header.'". Expected "MSH"');
         }
     }
-    
+
+    #[\ReturnTypeWillChange]
     protected function setEscapeSequences() {
         $escapeSequence = substr($this->hl7String, 3, 5);
         $escapeSequence = str_split($escapeSequence);
@@ -144,5 +152,3 @@ class Unserializer
         $this->escapeSequences['cursor_return'] = chr(13);
     }
 }
-
-?>
